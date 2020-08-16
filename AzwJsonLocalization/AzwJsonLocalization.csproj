@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>AzureZeng.JsonLocalization</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+    <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
+    <GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
+    <Product>AzureZeng's JSON Localization Library</Product>
+    <AssemblyTitle>AzureZeng's JSON Localization Library</AssemblyTitle>
+    <Copyright>Copyright© AzureZeng Studio 2014-2020. All rights reserverd.</Copyright>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DynamicLocalization\" />
+  </ItemGroup>
+
+</Project>
