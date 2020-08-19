@@ -1,0 +1,26 @@
+﻿<Window x:Class="NetCoreWpfLocDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NetCoreWpfLocDemo"
+        xmlns:lex="http://wpflocalizeextension.codeplex.com"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="{lex:Loc Key=MainWindow:menu.file}">
+                <MenuItem Header="{lex:Loc Key=MainWindow:menu.file.new}"/>
+                <MenuItem Header="{lex:Loc Key=MainWindow:menu.file.open}"/>
+                <MenuItem Header="{lex:Loc Key=MainWindow:menu.file.save}"/>
+                <Separator />
+                <MenuItem Header="{lex:Loc Key=MainWindow:menu.file.exit}"/>
+            </MenuItem>
+        </Menu>
+        <Grid>
+            <Button Content="{lex:Loc Key=MainWindow:button1.text}" HorizontalAlignment="Left" Margin="148,148,0,0" VerticalAlignment="Top" Width="124" Height="23" Click="Button_Click"/>
+            <Button Content="{lex:Loc Key=MainWindow:button2.text}" HorizontalAlignment="Left" Margin="148,176,0,0" VerticalAlignment="Top" Width="124" Click="Button2_OnClick"/>
+
+        </Grid>
+    </DockPanel>
+</Window>

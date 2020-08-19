@@ -125,24 +125,10 @@ namespace AzureZeng.JsonLocalization
         /// </summary>
         /// <param name="key">The key of the object. This parameter can be also a path to a specified object.</param>
         /// <returns>The specified object. Return null if this object is not found, or the path given is invalid.</returns>
-        public object this[string key]
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(key) || key[key.Length - 1] == ':') return null;
-                if (key.Contains(":"))
-                {
-                    if (key[0] == ':') return this["default", key.Substring(1, key.Length - 1)];
-                    int idx = key.IndexOf(':');
-                    string namesp = key.Substring(0, idx);
-                    string itemkey = key.Substring(idx + 1, key.Length - namesp.Length - 1);
-                    if (ValidateName(namesp, true) && ValidateName(namesp, false)) return this[namesp, itemkey];
-                    else return null;
-                }
-
-                return this["default", key];
-            }
-        }
+        public object this[string key] =>
+            ParsePathString(key, out var namespaceName, out var _key)
+                ? this[namespaceName, _key]
+                : null;
 
         /// <summary>
         ///     Attempt to create a data namespace with specified name.
@@ -187,8 +173,7 @@ namespace AzureZeng.JsonLocalization
         ///     Parse specific localization data and append these data to this instance.
         ///     Usually used to migrate multiple data to one instance.
         /// </summary>
-        /// <param name="json"></param>
-        /// <param name="loadCultureInfo"></param>
+        /// <param name="json">Target JSON string to be parsed and appended.</param>
         public void AppendFromJson(string json)
         {
             InternalParse(json, false);
@@ -246,9 +231,11 @@ namespace AzureZeng.JsonLocalization
         /// <param name="n">The name string which required to be check.</param>
         /// <param name="isNamespaceName">If this parameter is true, the function will perform a namespace name check.</param>
         /// <returns>If the name is valid, return true; otherwise, false.</returns>
-        public bool ValidateName(string n, bool isNamespaceName)
+        public static bool ValidateName(string n, bool isNamespaceName)
         {
-            if (string.IsNullOrEmpty(n)) return true; // Default namespace
+            if (string.IsNullOrEmpty(n))
+                return isNamespaceName; // Default namespace
+            
             if (n.Length == 1 && n[0] == '_') return false; // '_' string
             for (var i = 0; i < n.Length; i++)
             {
@@ -260,6 +247,38 @@ namespace AzureZeng.JsonLocalization
             }
 
             return true;
+        }
+
+        public static bool ParsePathString(string s, out string namespaceName, out string key)
+        {
+            if (string.IsNullOrWhiteSpace(s) || s[s.Length-1] == ':') goto InvalidPathReturn;
+            if (s.Contains(":"))
+            {
+                if (s[0] == ':')
+                {
+                    namespaceName = string.Empty;
+                    key = s.Substring(1, s.Length - 1);
+                    return true;
+                }
+                var idx = s.IndexOf(':');
+                namespaceName = s.Substring(0, idx);
+                key = s.Substring(idx + 1, s.Length - namespaceName.Length - 1);
+                if (ValidateName(namespaceName, true) && ValidateName(key, false)) return true;
+            }
+            else
+            {
+                if (ValidateName(s, false))
+                {
+                    namespaceName = string.Empty;
+                    key = s;
+                    return true;
+                }
+            }
+
+            InvalidPathReturn:
+            namespaceName = null;
+            key = null;
+            return false;
         }
     }
 }

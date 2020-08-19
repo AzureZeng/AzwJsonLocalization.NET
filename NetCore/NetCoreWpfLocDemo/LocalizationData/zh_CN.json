@@ -1,0 +1,23 @@
+﻿{
+	"targetLanguage": "zh-cn",
+	"author": "Test WPF Translation",
+	"description": "No description",
+	"fileName": "MainWindow Translation",
+	"objects": {
+		"default":{
+
+		},
+		"MainWindow": {
+			"button1.text": "点击我!",
+			"button2.text": "还原",
+			"menu.file": "文件(_F)",
+			"menu.file.new" : "新建(_N)",
+			"menu.file.open": "打开(_O)",
+			"menu.file.save": "保存(_S)",
+			"menu.file.exit": "退出(_X)"
+		},
+		"namespace2": {
+			"translateObj1": "text1"
+		}
+	}
+}

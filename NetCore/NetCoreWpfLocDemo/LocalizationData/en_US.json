@@ -1,0 +1,23 @@
+﻿{
+	"targetLanguage": "en-US",
+	"author": "Test WPF Translation",
+	"description": "No description",
+	"fileName": "MainWindow Translation",
+	"objects": {
+		"default":{
+
+		},
+		"MainWindow": {
+			"button1.text": "Click me!",
+			"button2.text": "Restore",
+			"menu.file": "_File",
+			"menu.file.new" : "_New",
+			"menu.file.open": "_Open",
+			"menu.file.save": "_Save",
+			"menu.file.exit": "E_xit"
+		},
+		"namespace2": {
+			"translateObj1": "text1"
+		}
+	}
+}

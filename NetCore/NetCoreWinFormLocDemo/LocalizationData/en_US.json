@@ -1,0 +1,19 @@
+﻿{
+	"targetLanguage": "en-US",
+	"author": "Test WinForm Translation",
+	"description": "No description",
+	"fileName": "Test WinForm Translation",
+	"objects": {
+		"default":{
+
+		},
+		"TestForm": {
+			"button1.text": "Click me!",
+			"menu.file.text": "&File"
+			
+		},
+		"namespace2": {
+			"translateObj1": "text1"
+		}
+	}
+}

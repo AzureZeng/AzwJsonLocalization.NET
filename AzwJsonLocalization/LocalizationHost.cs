@@ -74,11 +74,12 @@ namespace AzureZeng.JsonLocalization
         /// <param name="key">The key or the path of the required object.</param>
         /// <param name="lang">The required target language.</param>
         /// <returns>The specified object. If this object is not found, or the path given is invalid, this function will return null.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="key"/> is null or empty string.</exception>
         public object GetObject(string key, CultureInfo lang)
         {
             if (lang == null) throw new ArgumentNullException(nameof(lang));
             if (string.IsNullOrEmpty(key)) throw new ArgumentException(@"Value cannot be null or empty.", nameof(key));
-            RefGetDataInstance(out var defaultData, out var targetData);
+            RefGetDataInstance(out var defaultData, out var targetData, lang);
             var o = targetData?[key];
             return o ?? defaultData?[key];
         }
@@ -90,12 +91,13 @@ namespace AzureZeng.JsonLocalization
         /// <param name="key">The key of the required object.</param>
         /// <param name="lang"></param>
         /// <returns>The specified object. If this object is not found, this function will return null.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="key"/> is null or empty string.</exception>
         public object GetObject(string namespaceName, string key, CultureInfo lang)
         {
             if (lang == null) throw new ArgumentNullException(nameof(lang));
             if (string.IsNullOrEmpty(namespaceName)) namespaceName = "default";
             if (string.IsNullOrEmpty(key)) throw new ArgumentException(@"Value cannot be null or empty.", nameof(key));
-            RefGetDataInstance(out var defaultData, out var targetData);
+            RefGetDataInstance(out var defaultData, out var targetData, lang);
             var o = targetData?[namespaceName, key];
             return o ?? defaultData?[namespaceName, key];
         }
@@ -105,6 +107,7 @@ namespace AzureZeng.JsonLocalization
         /// </summary>
         /// <param name="key">The key or the path of the required object.</param>
         /// <returns>The specified object. If this object is not found, or the path given is invalid, this function will return null.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="key"/> is null or empty string.</exception>
         public object GetObject(string key) => GetObject(key, GetSelectedCultureInfo());
 
         /// <summary>
@@ -113,17 +116,17 @@ namespace AzureZeng.JsonLocalization
         /// <param name="namespaceName">The name of the namespace which contains the required object.</param>
         /// <param name="key">The key of the required object.</param>
         /// <returns>The specified object. If this object is not found, this function will return null.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="key"/> is null or empty string.</exception>
         public object GetObject(string namespaceName, string key) => GetObject(namespaceName, key, GetSelectedCultureInfo());
 
-        private void RefGetDataInstance(out LocalizationData defaultData, out LocalizationData targetData)
+        private void RefGetDataInstance(out LocalizationData defaultData, out LocalizationData targetData, CultureInfo selectedCultureInfo)
         {
             defaultData = null;
             targetData = null;
-            var target = GetSelectedCultureInfo();
             foreach (var c in _dataSet)
             {
                 if (c.LanguageInfo.Equals(_defaultCultureInfo)) defaultData = c;
-                if (c.LanguageInfo.Equals(target)) targetData = c;
+                if (c.LanguageInfo.Equals(selectedCultureInfo)) targetData = c;
             }
         }
         
