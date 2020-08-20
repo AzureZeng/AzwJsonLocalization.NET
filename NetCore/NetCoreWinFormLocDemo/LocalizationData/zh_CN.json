@@ -1,4 +1,4 @@
-﻿{
+{
 	"targetLanguage": "zh-cn",
 	"author": "Test WinForm Translation",
 	"description": "No description",
@@ -10,11 +10,14 @@
 		"TestForm": {
 			"button1.text": "点击我!",
 			"button2.text": "还原",
-			"menu.file.text": "文件(&F)",
-			"menu.file.new" : "新建(_N)",
-			"menu.file.open": "打开(_O)",
-			"menu.file.save": "保存(_S)",
-			"menu.file.exit": "退出(_X)"
+			"menu.file": "文件(&F)",
+			"menu.file.new": "新建文档(&N)",
+			"menu.file.open": "打开(&O)",
+			"menu.file.save": "保存(&S)",
+			"menu.file.saveAs": "另存为(&A)",
+			"menu.edit.cut": "剪切(&T)",
+			"menu.edit.copy": "复制(&C)",
+			"menu.edit.paste": "粘贴(&P)"
 		},
 		"namespace2": {
 			"translateObj1": "text1"

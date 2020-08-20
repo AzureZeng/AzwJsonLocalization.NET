@@ -22,7 +22,11 @@ namespace NetCoreWinFormLocDemo
             InitializeComponent();
             _dpd = Program.DynLocHost.CreateNewBindingObject(this);
             _dpd.RegisterNewProperty(button1, nameof(button1.Text), "TestForm:button1.text");
-            _dpd.RegisterNewProperty(fileToolStripMenuItem, nameof(fileToolStripMenuItem.Text), "TestForm:menu.file.text");
+            _dpd.RegisterNewProperty(menu_file, nameof(menu_file.Text), "TestForm:menu.file");
+            _dpd.RegisterNewProperty(menu_file_new, nameof(menu_file_new.Text), "TestForm:menu.file.new");
+            _dpd.RegisterNewProperty(menu_file_open, nameof(menu_file_open.Text), "TestForm:menu.file.open");
+            _dpd.RegisterNewProperty(menu_file_save, nameof(menu_file_save.Text), "TestForm:menu.file.save");
+            _dpd.RegisterNewProperty(menu_file_saveAs, nameof(menu_file_saveAs.Text), "TestForm:menu.file.saveAs");
             button1.Click += Button1_Click;
             _dpd.UpdateLocalization();
         }
@@ -30,13 +34,13 @@ namespace NetCoreWinFormLocDemo
         protected override void OnClosed(EventArgs e)
         {
             base.OnClosed(e);
-            Program.DynLocHost.RemoveObject(_dpd);
+            _dpd.Dispose();
         }
 
         private void Button1_Click(object sender, EventArgs e)
         {
             Program.LocHost.SelectedCultureInfo = CultureInfo.GetCultureInfoByIetfLanguageTag("zh-CN");
-            _dpd.UpdateLocalization();
+            Program.DynLocHost.UpdateLocalization();
         }
     }
 }

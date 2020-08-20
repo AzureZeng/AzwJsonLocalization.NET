@@ -41,10 +41,10 @@ namespace AzureZeng.JsonLocalization
         }
 
         /// <summary>
-        /// Initializes an empty <seealso cref="LocalizationData"/> instance.
+        ///     Initializes an empty <seealso cref="LocalizationData" /> instance.
         /// </summary>
         /// <param name="targetCultureInfo">The target language of this data instance.</param>
-        /// <exception cref="ArgumentNullException"><paramref name="targetCultureInfo"/> is null</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="targetCultureInfo" /> is null</exception>
         public LocalizationData(CultureInfo targetCultureInfo)
         {
             if (targetCultureInfo == null) throw new ArgumentNullException(nameof(targetCultureInfo));
@@ -54,12 +54,12 @@ namespace AzureZeng.JsonLocalization
         }
 
         /// <summary>
-        /// The target language of this data.
+        ///     The target language of this data.
         /// </summary>
         public CultureInfo LanguageInfo { get; private set; }
 
         /// <summary>
-        /// The author of this localization data. This property is usually defined in data JSON file.
+        ///     The author of this localization data. This property is usually defined in data JSON file.
         /// </summary>
         public string Author
         {
@@ -72,7 +72,7 @@ namespace AzureZeng.JsonLocalization
         }
 
         /// <summary>
-        /// The description of this localization data. This property is usually defined in data JSON file.
+        ///     The description of this localization data. This property is usually defined in data JSON file.
         /// </summary>
         public string Description
         {
@@ -85,7 +85,7 @@ namespace AzureZeng.JsonLocalization
         }
 
         /// <summary>
-        /// Get the names of data namespaces defined in this <seealso cref="LocalizationData"/> instance.
+        ///     Get the names of data namespaces defined in this <seealso cref="LocalizationData" /> instance.
         /// </summary>
         public string[] DataNamespaceNames
         {
@@ -98,11 +98,11 @@ namespace AzureZeng.JsonLocalization
         }
 
         /// <summary>
-        /// Get the specified data object in this <seealso cref="LocalizationData"/> instance.
+        ///     Get the specified data object in this <seealso cref="LocalizationData" /> instance.
         /// </summary>
         /// <param name="namespaceName">
-        /// The namespace name which contains the required object.
-        /// Will attempt to search in default namespace if this parameter set to null/empty/"default".
+        ///     The namespace name which contains the required object.
+        ///     Will attempt to search in default namespace if this parameter set to null/empty/"default".
         /// </param>
         /// <param name="key">The key of this object. If this parameter is null or empty string, this property will return null.</param>
         /// <returns>The specified object. Or return null if this object is not found.</returns>
@@ -121,7 +121,7 @@ namespace AzureZeng.JsonLocalization
         }
 
         /// <summary>
-        /// Get the specified data object in this <seealso cref="LocalizationData"/> instance.
+        ///     Get the specified data object in this <seealso cref="LocalizationData" /> instance.
         /// </summary>
         /// <param name="key">The key of the object. This parameter can be also a path to a specified object.</param>
         /// <returns>The specified object. Return null if this object is not found, or the path given is invalid.</returns>
@@ -148,7 +148,7 @@ namespace AzureZeng.JsonLocalization
         }
 
         /// <summary>
-        /// Get the specified namespace dictionary.
+        ///     Get the specified namespace dictionary.
         /// </summary>
         /// <param name="namespaceName">The name of required namespace.</param>
         /// <returns>The required namespace dictionary. Return null if this namespace is not defined.</returns>
@@ -158,7 +158,7 @@ namespace AzureZeng.JsonLocalization
         }
 
         /// <summary>
-        /// Remove a specific namespace from this <seealso cref="LocalizationData"/> instance.
+        ///     Remove a specific namespace from this <seealso cref="LocalizationData" /> instance.
         /// </summary>
         /// <param name="namespaceName">The name of the specific namespace.</param>
         /// <returns>If removed successfully, return true. Otherwise, return false.</returns>
@@ -180,11 +180,11 @@ namespace AzureZeng.JsonLocalization
         }
 
         /// <summary>
-        /// Create an <seealso cref="LocalizationData"/> instance and load data from a specified JSON string.
+        ///     Create an <seealso cref="LocalizationData" /> instance and load data from a specified JSON string.
         /// </summary>
         /// <param name="json">The data JSON string.</param>
         /// <returns>The instance created.</returns>
-        /// <exception cref="ArgumentNullException"><paramref name="json"/> is empty string or null.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="json" /> is empty string or null.</exception>
         public static LocalizationData ParseFromJson(string json)
         {
             var instance = new LocalizationData();
@@ -226,7 +226,7 @@ namespace AzureZeng.JsonLocalization
         }
 
         /// <summary>
-        /// Check whether a specific name is valid.
+        ///     Check whether a specific name is valid.
         /// </summary>
         /// <param name="n">The name string which required to be check.</param>
         /// <param name="isNamespaceName">If this parameter is true, the function will perform a namespace name check.</param>
@@ -235,7 +235,7 @@ namespace AzureZeng.JsonLocalization
         {
             if (string.IsNullOrEmpty(n))
                 return isNamespaceName; // Default namespace
-            
+
             if (n.Length == 1 && n[0] == '_') return false; // '_' string
             for (var i = 0; i < n.Length; i++)
             {
@@ -251,7 +251,7 @@ namespace AzureZeng.JsonLocalization
 
         public static bool ParsePathString(string s, out string namespaceName, out string key)
         {
-            if (string.IsNullOrWhiteSpace(s) || s[s.Length-1] == ':') goto InvalidPathReturn;
+            if (string.IsNullOrWhiteSpace(s) || s[s.Length - 1] == ':') goto InvalidPathReturn;
             if (s.Contains(":"))
             {
                 if (s[0] == ':')
@@ -260,6 +260,7 @@ namespace AzureZeng.JsonLocalization
                     key = s.Substring(1, s.Length - 1);
                     return true;
                 }
+
                 var idx = s.IndexOf(':');
                 namespaceName = s.Substring(0, idx);
                 key = s.Substring(idx + 1, s.Length - namespaceName.Length - 1);

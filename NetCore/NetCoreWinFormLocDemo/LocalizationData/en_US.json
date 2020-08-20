@@ -1,4 +1,4 @@
-﻿{
+{
 	"targetLanguage": "en-US",
 	"author": "Test WinForm Translation",
 	"description": "No description",
@@ -8,9 +8,15 @@
 
 		},
 		"TestForm": {
-			"button1.text": "Click me!",
-			"menu.file.text": "&File"
-			
+			"button1.text": "Click me!a",
+			"menu.file": "&File",
+			"menu.file.new": "&New",
+			"menu.file.open": "&Open",
+			"menu.file.save": "&Save",
+			"menu.file.saveAs": "Save &As",
+			"menu.edit.cut": "Cu&t",
+			"menu.edit.copy": "&Copy",
+			"menu.edit.paste": "&Paste"
 		},
 		"namespace2": {
 			"translateObj1": "text1"

@@ -9,32 +9,32 @@
 // All rights reversed.
 
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Reflection;
 
 namespace AzureZeng.JsonLocalization.DynamicLocalization
 {
     public class DynamicPropertyBinding : IDisposable
     {
-        readonly Collection<DynamicBindObject> _bindObjects = new Collection<DynamicBindObject>();
-
-        public object ObjectKey { get; internal set; }
-
-        public DynamicLocalizationHost BindHost { get; internal set; }
+        private readonly Collection<DynamicBindObject> _bindObjects = new Collection<DynamicBindObject>();
 
         public DynamicPropertyBinding(object key)
         {
             ObjectKey = key ?? throw new ArgumentNullException(nameof(key));
         }
 
+        public object ObjectKey { get; internal set; }
+
+        public DynamicLocalizationHost BindHost { get; internal set; }
+
         public bool IsDisposed { get; private set; }
 
         public void Dispose()
         {
             if (IsDisposed) return;
-            // TODO: add dispose code
+            _bindObjects.Clear();
+            BindHost.RemoveObject(this);
+            GC.SuppressFinalize(this);
             IsDisposed = true;
         }
 
@@ -42,13 +42,11 @@ namespace AzureZeng.JsonLocalization.DynamicLocalization
         {
             DynamicBindObject bind = null;
             foreach (var o in _bindObjects)
-            {
-                if (o.TargetObject == obj) 
+                if (o.TargetObject == obj)
                 {
-                    bind = o; 
+                    bind = o;
                     break;
                 }
-            }
 
             if (bind != null) _bindObjects.Remove(bind);
         }
@@ -57,13 +55,11 @@ namespace AzureZeng.JsonLocalization.DynamicLocalization
         {
             DynamicBindObject bind = null;
             foreach (var o in _bindObjects)
-            {
                 if (o == obj)
                 {
                     bind = o;
                     break;
                 }
-            }
 
             if (bind != null) _bindObjects.Remove(bind);
         }
@@ -72,9 +68,8 @@ namespace AzureZeng.JsonLocalization.DynamicLocalization
         {
             if (obj == null) throw new ArgumentNullException(nameof(obj));
             foreach (var o in _bindObjects)
-            {
-                if (o.TargetObject == obj) return o;
-            }
+                if (o.TargetObject == obj)
+                    return o;
             var awsl = new DynamicBindObject(obj);
             _bindObjects.Add(awsl);
             return awsl;
@@ -84,9 +79,8 @@ namespace AzureZeng.JsonLocalization.DynamicLocalization
         {
             if (obj == null) throw new ArgumentNullException(nameof(obj));
             foreach (var a in _bindObjects)
-            {
-                if (a == obj || a.TargetObject == obj.TargetObject) throw new ArgumentException("Cannot register a object which is already registered.");
-            }
+                if (a == obj || a.TargetObject == obj.TargetObject)
+                    throw new ArgumentException("Cannot register a object which is already registered.");
             _bindObjects.Add(obj);
         }
 
@@ -117,36 +111,42 @@ namespace AzureZeng.JsonLocalization.DynamicLocalization
         public void UpdateLocalization()
         {
             if (IsDisposed) throw new ObjectDisposedException(typeof(DynamicPropertyBinding).FullName);
-            if (BindHost == null) throw new InvalidOperationException($"Before calling this function, a {typeof(DynamicLocalizationHost).FullName} instance must be assigned to property {BindHost}.");
-            if (BindHost.LocalizationProvider == null) throw  new InvalidOperationException($"The assigned {typeof(DynamicLocalizationHost).FullName} must be assigned a {typeof(LocalizationHost).FullName}");
+            if (BindHost == null)
+                throw new InvalidOperationException(
+                    $"Before calling this function, a {typeof(DynamicLocalizationHost).FullName} instance must be assigned to property {BindHost}.");
+            if (BindHost.LocalizationProvider == null)
+                throw new InvalidOperationException(
+                    $"The assigned {typeof(DynamicLocalizationHost).FullName} must be assigned a {typeof(LocalizationHost).FullName}");
             foreach (var a in _bindObjects)
+            foreach (var b in a._bindProps)
             {
-                foreach (var b in a._bindProps)
+                var pi = b[0] as PropertyInfo;
+                if (pi != null)
                 {
-                    var pi = b[0] as PropertyInfo;
-                    if (pi != null)
+                    Action performLoc = delegate
                     {
-                        Action performLoc = delegate
+                        var val = BindHost.LocalizationProvider.GetObject(b[1] as string, b[2] as string) ??
+                                  $"Key: {b[1]}:{b[2]}";
+                        pi.SetValue(a.TargetObject, val);
+                    };
+                    if (BindHost.IgnoreUpdateLocException)
+                        try
                         {
-                            var val = BindHost.LocalizationProvider.GetObject(b[1] as string, b[2] as string) ?? $"Key: {b[1]}:{b[2]}";
-                            pi.SetValue(a.TargetObject, val);
-                        };
-                        if (BindHost.IgnoreUpdateLocException)
-                        {
-                            try
-                            {
-                                performLoc.Invoke();
-                            }
-                            catch (Exception e)
-                            {
-                                Console.WriteLine("Localization Error:" + e);
-                            }
-                        }
-                        else
                             performLoc.Invoke();
-                    }
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine("Localization Error:" + e);
+                        }
+                    else
+                        performLoc.Invoke();
                 }
             }
+        }
+
+        ~DynamicPropertyBinding()
+        {
+            Dispose();
         }
     }
 }

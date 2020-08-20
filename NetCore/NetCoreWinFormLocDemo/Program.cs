@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AzureZeng.JsonLocalization;
@@ -27,6 +28,7 @@ namespace NetCoreWinFormLocDemo
             LocHost.AddLocalizationData(LocalizationData.ParseFromJson(AppRes.zh_CN));
             DynLocHost.LocalizationProvider = LocHost;
             Application.Run(new TestForm());
+            DynLocHost.Dispose(true);
         }
     }
 }
