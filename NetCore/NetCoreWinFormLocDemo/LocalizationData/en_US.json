@@ -5,21 +5,48 @@
 	"fileName": "Test WinForm Translation",
 	"objects": {
 		"default":{
-
 		},
 		"TestForm": {
-			"button1.text": "Click me!a",
+			"button1.text": "Click me!",
 			"menu.file": "&File",
 			"menu.file.new": "&New",
 			"menu.file.open": "&Open",
 			"menu.file.save": "&Save",
 			"menu.file.saveAs": "Save &As",
+			"menu.file.print": "&Print",
+			"menu.file.printPreview": "Print Pre&view",
+			"menu.file.exit":  "E&xit",
+			"menu.edit" : "&Edit",
+			"menu.edit.redo": "&Redo",
+			"menu.edit.undo": "&Undo",
 			"menu.edit.cut": "Cu&t",
 			"menu.edit.copy": "&Copy",
-			"menu.edit.paste": "&Paste"
+			"menu.edit.paste": "&Paste",
+			"menu.edit.selectAll": "Select &All",
+			"menu.tools": "&Tools",
+			"menu.tools.customize": "&Customize",
+			"menu.tools.options": "&Options",
+			"menu.help": "&Help",
+			"menu.help.contents": "&Contents",
+			"menu.help.index": "&Index",
+			"menu.help.search": "&Search",
+			"menu.help.about": "&About...",
+			"fileTree.favorite": "Favorite",
+			"fileTree.recentOpened": "Recent Opened",
+			"fileTree.recentOpened.none": "(None)",
+			"statusBar.ready": "Ready"
 		},
-		"namespace2": {
-			"translateObj1": "text1"
+		"WelcomeForm": {
+			"button.shutdown": "&Shutdown",
+			"label.intro": "Welcome to AzwJsonLocalization demo!\r\nThis demo supports both .NET Core and .NET Framework.",
+			"label.selectTargetLang": "Select target language: ",
+			"label.runningFrameworkMode": "You are running in .NET {0} mode.",
+			"cmdLink.manualRegDemo.text": "Manual Register Style Localization",
+			"cmdLink.manualRegDemo.note": "Register all properties by code to implement localization.",
+			"cmdLink.autoRegDemo.text": "Automatic Register Style Localization",
+			"cmdLink.autoRegDemo.note": "Use specific function loop and foreach to apply property registering.",
+			"cmdLink.taskDlgDemo.text": "TaskDialog Dynamic Localization",
+			"cmdLink.taskDlgDemo.note": "Shows the dynamic TaskDialog localization dialog."
 		}
 	}
 }

@@ -1,21 +1,25 @@
-﻿// File: DynamicLocalization.cs
+﻿// File: DynamicLocalizationHost.cs
 // Project: AzwJsonLocalization\AzwJsonLocalization
 // Creation Time: 2020/08/16 11:32 PM
 // ------------------------------
-// If you want to use this file for commercial, you should
-// ask the permission of this file's original author.
+// If you want to use this file for commercial purpose, you should
+// ask this file's original author for the permission of use.
 // ------------------------------
 // Copyright(C) 2014-2020, Azure Zeng(Individual).
 // All rights reversed.
 
+#region Imports
+
 using System;
 using System.Collections.ObjectModel;
+
+#endregion
 
 namespace AzureZeng.JsonLocalization.DynamicLocalization
 {
     public class DynamicLocalizationHost : IDisposable
     {
-        private readonly Collection<DynamicPropertyBinding> _bindings = new Collection<DynamicPropertyBinding>();
+        private readonly Collection<DynamicLocPropertyBinding> _bindings = new Collection<DynamicLocPropertyBinding>();
 
         private LocalizationHost _localizationProvider;
 
@@ -47,7 +51,8 @@ namespace AzureZeng.JsonLocalization.DynamicLocalization
             if (IsDisposed) return;
             if (disposing)
             {
-                var array = new DynamicPropertyBinding[_bindings.Count];
+                var array = new DynamicLocPropertyBinding[_bindings.Count];
+                _bindings.CopyTo(array, 0);
                 foreach (var a in array)
                     a.Dispose();
             }
@@ -61,7 +66,7 @@ namespace AzureZeng.JsonLocalization.DynamicLocalization
             IsDisposed = true;
         }
 
-        public DynamicPropertyBinding CreateNewBindingObject(object objKey)
+        public DynamicLocPropertyBinding CreateNewBindingObject(object objKey)
         {
             if (objKey == null) throw new ArgumentNullException(nameof(objKey));
             foreach (var b in _bindings)
@@ -69,7 +74,7 @@ namespace AzureZeng.JsonLocalization.DynamicLocalization
                     throw new ArgumentException(
                         "Cannot create a new binding object which the key already exists in this host.",
                         nameof(objKey));
-            var ret = new DynamicPropertyBinding(objKey);
+            var ret = new DynamicLocPropertyBinding(objKey);
             _bindings.Add(ret);
             ret.BindHost = this;
             return ret;
@@ -78,7 +83,7 @@ namespace AzureZeng.JsonLocalization.DynamicLocalization
         public bool RemoveObject(object objKey)
         {
             if (objKey == null) throw new ArgumentNullException(nameof(objKey));
-            DynamicPropertyBinding b = null;
+            DynamicLocPropertyBinding b = null;
             foreach (var a in _bindings)
                 if (a.ObjectKey == objKey)
                 {
@@ -92,7 +97,7 @@ namespace AzureZeng.JsonLocalization.DynamicLocalization
             return true;
         }
 
-        public bool RemoveObject(DynamicPropertyBinding obj)
+        public bool RemoveObject(DynamicLocPropertyBinding obj)
         {
             return obj != null && _bindings.Remove(obj);
         }

@@ -1,0 +1,2 @@
+As the .NET Core projects can compile to both .NET Core and .NET Framework application, I decided not to make separate .NET Framework projects.
+You can build .NET Core project to obtain .NET Framework demo application.

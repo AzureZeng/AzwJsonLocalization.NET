@@ -1,6 +1,20 @@
-﻿using System;
+﻿// File: DynamicBindObject.cs
+// Project: AzwJsonLocalization\AzwJsonLocalization
+// Creation Time: 2020/08/17 11:14 PM
+// ------------------------------
+// If you want to use this file for commercial purpose, you should
+// ask this file's original author for the permission of use.
+// ------------------------------
+// Copyright(C) 2014-2020, Azure Zeng(Individual).
+// All rights reversed.
+
+#region Imports
+
+using System;
 using System.Collections.ObjectModel;
 using System.Reflection;
+
+#endregion
 
 namespace AzureZeng.JsonLocalization.DynamicLocalization
 {

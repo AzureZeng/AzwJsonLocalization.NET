@@ -1,20 +1,20 @@
-﻿#region File License
-
-// File: LocalizationHost.cs
-// Project: AzwJsonLocalizationTemplate\AzwLocalization
-// Creation Time: 2020/08/10 3:13 PM
+﻿// File: LocalizationHost.cs
+// Project: AzwJsonLocalization\AzwJsonLocalization
+// Creation Time: 2020/08/16 3:52 PM
 // ------------------------------
-// If you want to use this file for commercial, you should
-// ask the permission of this file's original author.
+// If you want to use this file for commercial purpose, you should
+// ask this file's original author for the permission of use.
 // ------------------------------
 // Copyright(C) 2014-2020, Azure Zeng(Individual).
 // All rights reversed.
 
-#endregion
+#region Imports
 
 using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
+
+#endregion
 
 namespace AzureZeng.JsonLocalization
 {

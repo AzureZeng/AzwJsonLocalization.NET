@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30406.217
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NetFramework", "NetFramework", "{4AB993F4-E31E-4BCB-ACAE-908C8FA347B8}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NetCore", "NetCore", "{48BF5140-9203-448E-8DA7-9958352FC222}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzwJsonLocalization", "AzwJsonLocalization\AzwJsonLocalization.csproj", "{4DA7CEDB-C7BF-4282-9C41-8CBD79E13E1F}"

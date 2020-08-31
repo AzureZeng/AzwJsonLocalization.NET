@@ -68,21 +68,18 @@ namespace NetCoreWinFormLocDemo {
         ///	&quot;fileName&quot;: &quot;Test WinForm Translation&quot;,
         ///	&quot;objects&quot;: {
         ///		&quot;default&quot;:{
-        ///
         ///		},
         ///		&quot;TestForm&quot;: {
-        ///			&quot;button1.text&quot;: &quot;Click me!a&quot;,
+        ///			&quot;button1.text&quot;: &quot;Click me!&quot;,
         ///			&quot;menu.file&quot;: &quot;&amp;File&quot;,
         ///			&quot;menu.file.new&quot;: &quot;&amp;New&quot;,
         ///			&quot;menu.file.open&quot;: &quot;&amp;Open&quot;,
         ///			&quot;menu.file.save&quot;: &quot;&amp;Save&quot;,
         ///			&quot;menu.file.saveAs&quot;: &quot;Save &amp;As&quot;,
-        ///			&quot;menu.edit.cut&quot;: &quot;Cu&amp;t&quot;,
-        ///			&quot;menu.edit.copy&quot;: &quot;&amp;Copy&quot;,
-        ///			&quot;menu.edit.paste&quot;: &quot;&amp;Paste&quot;
-        ///		},
-        ///		&quot;namespace2&quot;: {
-        ///			&quot; [rest of string was truncated]&quot;;.
+        ///			&quot;menu.file.print&quot;: &quot;&amp;Print&quot;,
+        ///			&quot;menu.file.printPreview&quot;: &quot;Print Pre&amp;view&quot;,
+        ///			&quot;menu.file.exit&quot;:  &quot;E&amp;xit&quot;,
+        ///			&quot;menu.ed [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string en_US {
             get {
@@ -98,7 +95,6 @@ namespace NetCoreWinFormLocDemo {
         ///	&quot;fileName&quot;: &quot;Test WinForm Translation&quot;,
         ///	&quot;objects&quot;: {
         ///		&quot;default&quot;:{
-        ///
         ///		},
         ///		&quot;TestForm&quot;: {
         ///			&quot;button1.text&quot;: &quot;点击我!&quot;,
@@ -108,10 +104,9 @@ namespace NetCoreWinFormLocDemo {
         ///			&quot;menu.file.open&quot;: &quot;打开(&amp;O)&quot;,
         ///			&quot;menu.file.save&quot;: &quot;保存(&amp;S)&quot;,
         ///			&quot;menu.file.saveAs&quot;: &quot;另存为(&amp;A)&quot;,
-        ///			&quot;menu.edit.cut&quot;: &quot;剪切(&amp;T)&quot;,
-        ///			&quot;menu.edit.copy&quot;: &quot;复制(&amp;C)&quot;,
-        ///			&quot;menu.edit.paste&quot;: &quot;粘贴(&amp;P)&quot;
-        /// [rest of string was truncated]&quot;;.
+        ///			&quot;menu.file.print&quot;: &quot;打印(&amp;P)&quot;,
+        ///			&quot;menu.file.printPreview&quot;: &quot;打印预览(&amp;V)&quot;,
+        ///			&quot;menu.file.exit&quot;:   [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string zh_CN {
             get {

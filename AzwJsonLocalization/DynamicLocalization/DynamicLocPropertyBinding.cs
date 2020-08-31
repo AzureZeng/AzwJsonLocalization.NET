@@ -1,24 +1,28 @@
-﻿// File: DynamicPropertyBinder.cs
+﻿// File: DynamicPropertyBinding.cs
 // Project: AzwJsonLocalization\AzwJsonLocalization
 // Creation Time: 2020/08/17 11:50 AM
 // ------------------------------
-// If you want to use this file for commercial, you should
-// ask the permission of this file's original author.
+// If you want to use this file for commercial purpose, you should
+// ask this file's original author for the permission of use.
 // ------------------------------
 // Copyright(C) 2014-2020, Azure Zeng(Individual).
 // All rights reversed.
+
+#region Imports
 
 using System;
 using System.Collections.ObjectModel;
 using System.Reflection;
 
+#endregion
+
 namespace AzureZeng.JsonLocalization.DynamicLocalization
 {
-    public class DynamicPropertyBinding : IDisposable
+    public class DynamicLocPropertyBinding : IDisposable
     {
         private readonly Collection<DynamicBindObject> _bindObjects = new Collection<DynamicBindObject>();
 
-        public DynamicPropertyBinding(object key)
+        public DynamicLocPropertyBinding(object key)
         {
             ObjectKey = key ?? throw new ArgumentNullException(nameof(key));
         }
@@ -110,7 +114,7 @@ namespace AzureZeng.JsonLocalization.DynamicLocalization
 
         public void UpdateLocalization()
         {
-            if (IsDisposed) throw new ObjectDisposedException(typeof(DynamicPropertyBinding).FullName);
+            if (IsDisposed) throw new ObjectDisposedException(typeof(DynamicLocPropertyBinding).FullName);
             if (BindHost == null)
                 throw new InvalidOperationException(
                     $"Before calling this function, a {typeof(DynamicLocalizationHost).FullName} instance must be assigned to property {BindHost}.");
@@ -126,7 +130,7 @@ namespace AzureZeng.JsonLocalization.DynamicLocalization
                     Action performLoc = delegate
                     {
                         var val = BindHost.LocalizationProvider.GetObject(b[1] as string, b[2] as string) ??
-                                  $"Key: {b[1]}:{b[2]}";
+                                  $"Key: {(string.IsNullOrEmpty(b[1] as string) ? string.Empty : b[1] + ":")}{b[2]}";
                         pi.SetValue(a.TargetObject, val);
                     };
                     if (BindHost.IgnoreUpdateLocException)
@@ -142,11 +146,15 @@ namespace AzureZeng.JsonLocalization.DynamicLocalization
                         performLoc.Invoke();
                 }
             }
+
+            UpdateLocalizationRequired?.Invoke(this, new EventArgs());
         }
 
-        ~DynamicPropertyBinding()
+        ~DynamicLocPropertyBinding()
         {
             Dispose();
         }
+
+        public event EventHandler UpdateLocalizationRequired;
     }
 }

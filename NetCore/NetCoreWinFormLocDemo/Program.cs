@@ -21,14 +21,27 @@ namespace NetCoreWinFormLocDemo
         [STAThread]
         static void Main()
         {
-            Application.SetHighDpiMode(HighDpiMode.SystemAware);
-            Application.EnableVisualStyles();
+            //Application.SetHighDpiMode(HighDpiMode.SystemAware);
+            //Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             LocHost.AddLocalizationData(LocalizationData.ParseFromJson(AppRes.en_US));
             LocHost.AddLocalizationData(LocalizationData.ParseFromJson(AppRes.zh_CN));
             DynLocHost.LocalizationProvider = LocHost;
-            Application.Run(new TestForm());
+            LocHost.UseCurrentUiCulture = true;
+            Application.Run(new WelcomeForm());
             DynLocHost.Dispose(true);
+        }
+
+        public static bool IsRunningInNetCoreMode
+        {
+            get
+            {
+#if NETCOREAPP
+                return true;
+#else
+                return false;
+#endif
+            }
         }
     }
 }

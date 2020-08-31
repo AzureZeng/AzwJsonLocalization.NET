@@ -5,7 +5,6 @@
 	"fileName": "Test WinForm Translation",
 	"objects": {
 		"default":{
-
 		},
 		"TestForm": {
 			"button1.text": "点击我!",
@@ -15,12 +14,40 @@
 			"menu.file.open": "打开(&O)",
 			"menu.file.save": "保存(&S)",
 			"menu.file.saveAs": "另存为(&A)",
+			"menu.file.print": "打印(&P)",
+			"menu.file.printPreview": "打印预览(&V)",
+			"menu.file.exit":  "退出(&X)",
+			"menu.edit" : "编辑(&E)",
+			"menu.edit.redo": "重做(&R)",
+			"menu.edit.undo": "撤销(&U)",
 			"menu.edit.cut": "剪切(&T)",
 			"menu.edit.copy": "复制(&C)",
-			"menu.edit.paste": "粘贴(&P)"
+			"menu.edit.paste": "粘贴(&P)",
+			"menu.edit.selectAll": "选择全部(&A)",
+			"menu.tools": "工具(&T)",
+			"menu.tools.customize": "自定义(&C)",
+			"menu.tools.options": "选项(&O)",
+			"menu.help": "帮助(&H)",
+			"menu.help.contents": "帮助内容(&C)",
+			"menu.help.index": "索引(&I)",
+			"menu.help.search": "搜索内容(&S)",
+			"menu.help.about": "关于(&A)...",
+			"fileTree.favorite": "收藏的文档",
+			"fileTree.recentOpened": "最近打开的文档",
+			"fileTree.recentOpened.none": "(空)",
+			"statusBar.ready": "就绪"
 		},
-		"namespace2": {
-			"translateObj1": "text1"
+		"WelcomeForm": {
+			"button.shutdown": "关闭(&S)",
+			"label.intro": "欢迎来到 AzwJsonLocalization 演示程序! \r\n该演示同时支持 .NET Core 和 .NET Framework 框架。",
+			"label.selectTargetLang": "选择本地化目标语言:",
+			"label.runningFrameworkMode": "当前程序运行于 .NET {0} 框架下。",
+			"cmdLink.manualRegDemo.text": "手动注册属性的本地化",
+			"cmdLink.manualRegDemo.note": "通过用代码手动对相应属性进行注册来实现本地化。",
+			"cmdLink.autoRegDemo.text": "自动注册属性的本地化",
+			"cmdLink.autoRegDemo.note": "通过使用特定函数和 foreach 的循环来达到本地化。",
+			"cmdLink.taskDlgDemo.text": "TaskDialog 动态本地化",
+			"cmdLink.taskDlgDemo.note": "显示动态本地化的 TaskDialog 对话框。"
 		}
 	}
 }
