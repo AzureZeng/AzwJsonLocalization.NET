@@ -14,7 +14,13 @@
 			"menu.file.new" : "新建(_N)",
 			"menu.file.open": "打开(_O)",
 			"menu.file.save": "保存(_S)",
-			"menu.file.exit": "退出(_X)"
+			"menu.file.exit": "退出(_X)",
+			"menu.edit" : "编辑(_E)",
+			"menu.edit.redo": "重做(_R)",
+			"menu.edit.undo": "撤销(_U)",
+			"menu.edit.cut": "剪切(_T)",
+			"menu.edit.copy": "复制(_C)",
+			"menu.edit.paste": "粘贴(_P)"
 		},
 		"namespace2": {
 			"translateObj1": "text1"

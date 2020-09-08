@@ -1,4 +1,4 @@
-﻿// File: DynamicBindObject.cs
+﻿// File: DynamicLocBindObject.cs
 // Project: AzwJsonLocalization\AzwJsonLocalization
 // Creation Time: 2020/08/17 11:14 PM
 // ------------------------------
@@ -18,13 +18,13 @@ using System.Reflection;
 
 namespace AzureZeng.JsonLocalization.DynamicLocalization
 {
-    public class DynamicBindObject
+    public class DynamicLocBindObject
     {
         // object array format
         // propertyInfo, namespace, key
         internal readonly Collection<object[]> _bindProps = new Collection<object[]>();
 
-        public DynamicBindObject(object targetObject)
+        public DynamicLocBindObject(object targetObject)
         {
             TargetObject = targetObject ?? throw new ArgumentNullException(nameof(targetObject));
         }

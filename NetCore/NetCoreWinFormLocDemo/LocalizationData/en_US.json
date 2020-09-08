@@ -45,8 +45,17 @@
 			"cmdLink.manualRegDemo.note": "Register all properties by code to implement localization.",
 			"cmdLink.autoRegDemo.text": "Automatic Register Style Localization",
 			"cmdLink.autoRegDemo.note": "Use specific function loop and foreach to apply property registering.",
-			"cmdLink.taskDlgDemo.text": "TaskDialog Dynamic Localization",
-			"cmdLink.taskDlgDemo.note": "Shows the dynamic TaskDialog localization dialog."
+			"cmdLink.taskDlgDemo.text": "TaskDialog Localization",
+			"cmdLink.taskDlgDemo.note": "Shows the TaskDialog localization dialog.",
+			"message.sureToShutdown": "Are you sure to shutdown this demo?"
+		},
+		"TaskDialogDemo": {
+			"dialog.title": "Localization Demo App",
+			"dialog.instruction": "Task Dialog Localization Demo",
+			"dialog.footerText": "This is test footer text.",
+			"dialog.text": "Welcome to this task dialog localization demo.\r\nTry changing the display language in the start window, and open this dialog again.",
+			"cmdLink.option1.text": "Option 1",
+			"cmdLink.option1.note": "This is the first option."
 		}
 	}
 }

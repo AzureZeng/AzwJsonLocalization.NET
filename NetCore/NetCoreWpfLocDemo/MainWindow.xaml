@@ -16,6 +16,17 @@
                 <Separator />
                 <MenuItem Header="{lex:Loc Key=MainWindow:menu.file.exit}"/>
             </MenuItem>
+            <MenuItem Header="{lex:Loc Key=MainWindow:menu.edit}">
+                <MenuItem Header="{lex:Loc Key=MainWindow:menu.edit.redo}"/>
+                <MenuItem Header="{lex:Loc Key=MainWindow:menu.edit.undo}"></MenuItem>
+                <Separator></Separator>
+                <MenuItem Header="{lex:Loc Key=MainWindow:menu.edit.cut}"/>
+                <MenuItem Header="{lex:Loc Key=MainWindow:menu.edit.copy}" />
+                <MenuItem Header="{lex:Loc Key=MainWindow:menu.edit.paste}" />
+            </MenuItem>
+            <MenuItem Header="{lex:Loc Key=MainWindow:menu.help}">
+                <MenuItem Header="{lex:Loc Key=MainWindow:menu.help.about}"></MenuItem>
+            </MenuItem>
         </Menu>
         <Grid>
             <Button Content="{lex:Loc Key=MainWindow:button1.text}" HorizontalAlignment="Left" Margin="148,148,0,0" VerticalAlignment="Top" Width="124" Height="23" Click="Button_Click"/>

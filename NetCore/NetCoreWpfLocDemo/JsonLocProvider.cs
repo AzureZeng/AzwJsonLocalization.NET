@@ -21,7 +21,11 @@ namespace NetCoreWpfLocDemo
 
         public static JsonLocProvider Instance
         {
-            get { return _instance ??= new JsonLocProvider(); }
+            get
+            {
+                if (_instance==null) _instance = new JsonLocProvider();
+                return _instance;
+            }
         }
 
         public FullyQualifiedResourceKeyBase GetFullyQualifiedResourceKey(string key, DependencyObject target)

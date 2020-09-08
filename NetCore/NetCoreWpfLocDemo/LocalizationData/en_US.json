@@ -14,7 +14,18 @@
 			"menu.file.new" : "_New",
 			"menu.file.open": "_Open",
 			"menu.file.save": "_Save",
-			"menu.file.exit": "E_xit"
+			"menu.file.exit": "E_xit",
+			"menu.edit" : "_Edit",
+			"menu.edit.redo": "_Redo",
+			"menu.edit.undo": "_Undo",
+			"menu.edit.cut": "Cu_t",
+			"menu.edit.copy": "_Copy",
+			"menu.edit.paste": "_Paste",
+			"menu.help": "_Help",
+			"menu.help.contents": "_Contents",
+			"menu.help.index": "_Index",
+			"menu.help.search": "_Search",
+			"menu.help.about": "_About..."
 		},
 		"namespace2": {
 			"translateObj1": "text1"

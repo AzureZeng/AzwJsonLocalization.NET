@@ -20,7 +20,7 @@ namespace AzureZeng.JsonLocalization.DynamicLocalization
 {
     public class DynamicLocPropertyBinding : IDisposable
     {
-        private readonly Collection<DynamicBindObject> _bindObjects = new Collection<DynamicBindObject>();
+        private readonly Collection<DynamicLocBindObject> _bindObjects = new Collection<DynamicLocBindObject>();
 
         public DynamicLocPropertyBinding(object key)
         {
@@ -44,42 +44,42 @@ namespace AzureZeng.JsonLocalization.DynamicLocalization
 
         public void UnregisterObject(object obj)
         {
-            DynamicBindObject bind = null;
+            DynamicLocBindObject locBind = null;
             foreach (var o in _bindObjects)
                 if (o.TargetObject == obj)
                 {
-                    bind = o;
+                    locBind = o;
                     break;
                 }
 
-            if (bind != null) _bindObjects.Remove(bind);
+            if (locBind != null) _bindObjects.Remove(locBind);
         }
 
-        public void UnregisterObject(DynamicBindObject obj)
+        public void UnregisterObject(DynamicLocBindObject obj)
         {
-            DynamicBindObject bind = null;
+            DynamicLocBindObject locBind = null;
             foreach (var o in _bindObjects)
                 if (o == obj)
                 {
-                    bind = o;
+                    locBind = o;
                     break;
                 }
 
-            if (bind != null) _bindObjects.Remove(bind);
+            if (locBind != null) _bindObjects.Remove(locBind);
         }
 
-        public DynamicBindObject RegisterNewObject(object obj)
+        public DynamicLocBindObject RegisterNewObject(object obj)
         {
             if (obj == null) throw new ArgumentNullException(nameof(obj));
             foreach (var o in _bindObjects)
                 if (o.TargetObject == obj)
                     return o;
-            var awsl = new DynamicBindObject(obj);
+            var awsl = new DynamicLocBindObject(obj);
             _bindObjects.Add(awsl);
             return awsl;
         }
 
-        public void RegisterNewObject(DynamicBindObject obj)
+        public void RegisterNewObject(DynamicLocBindObject obj)
         {
             if (obj == null) throw new ArgumentNullException(nameof(obj));
             foreach (var a in _bindObjects)

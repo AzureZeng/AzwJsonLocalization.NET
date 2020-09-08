@@ -46,8 +46,17 @@
 			"cmdLink.manualRegDemo.note": "通过用代码手动对相应属性进行注册来实现本地化。",
 			"cmdLink.autoRegDemo.text": "自动注册属性的本地化",
 			"cmdLink.autoRegDemo.note": "通过使用特定函数和 foreach 的循环来达到本地化。",
-			"cmdLink.taskDlgDemo.text": "TaskDialog 动态本地化",
-			"cmdLink.taskDlgDemo.note": "显示动态本地化的 TaskDialog 对话框。"
+			"cmdLink.taskDlgDemo.text": "TaskDialog 本地化",
+			"cmdLink.taskDlgDemo.note": "显示本地化的 TaskDialog 对话框。",
+			"message.sureToShutdown": "确定要关闭该演示程序吗?"
+		},
+		"TaskDialogDemo": {
+			"dialog.title": "本地化演示程序",
+			"dialog.instruction": "Task Dialog 本地化示例",
+			"dialog.text": "欢迎来到 TaskDialog 本地化示例。\r\n尝试在本示例的开始窗口更改显示语言，并再次打开本对话框。",
+			"dialog.footerText": "此处是测试用的底部文本。",
+			"cmdLink.option1.text": "选项 1",
+			"cmdLink.option1.note": "这是第一个选项。"
 		}
 	}
 }

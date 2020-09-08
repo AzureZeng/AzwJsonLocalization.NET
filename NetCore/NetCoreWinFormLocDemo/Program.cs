@@ -1,8 +1,14 @@
+// File: Program.cs
+// Project: AzwJsonLocalization\NetCoreWinFormLocDemo
+// Creation Time: 2020/09/01 7:08 PM
+// ------------------------------
+// If you want to use this file for commercial purpose, you should
+// ask this file's original author for the permission of use.
+// ------------------------------
+// Copyright(C) 2014-2020, Azure Zeng(Individual).
+// All rights reversed.
+
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using AzureZeng.JsonLocalization;
 using AzureZeng.JsonLocalization.DynamicLocalization;
