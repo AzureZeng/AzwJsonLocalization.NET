@@ -9,6 +9,7 @@
 // All rights reversed.
 
 using System;
+using System.Globalization;
 using System.Windows.Forms;
 using AzureZeng.JsonLocalization;
 using AzureZeng.JsonLocalization.DynamicLocalization;
@@ -27,9 +28,13 @@ namespace NetCoreWinFormLocDemo
         [STAThread]
         static void Main()
         {
+            // Default displays English interface
+            CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.GetCultureInfoByIetfLanguageTag("en-US");
+
             //Application.SetHighDpiMode(HighDpiMode.SystemAware);
-            //Application.EnableVisualStyles();
+            //Application.EnableVisualStyles(); // As defined in manifest file, this statement is not required.
             Application.SetCompatibleTextRenderingDefault(false);
+
             LocHost.AddLocalizationData(LocalizationData.ParseFromJson(AppRes.en_US));
             LocHost.AddLocalizationData(LocalizationData.ParseFromJson(AppRes.zh_CN));
             DynLocHost.LocalizationProvider = LocHost;

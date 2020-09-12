@@ -20,7 +20,14 @@
 			"menu.edit.undo": "撤销(_U)",
 			"menu.edit.cut": "剪切(_T)",
 			"menu.edit.copy": "复制(_C)",
-			"menu.edit.paste": "粘贴(_P)"
+			"menu.edit.paste": "粘贴(_P)",
+			"menu.help": "帮助(_H)",
+			"menu.help.contents": "帮助内容(_C)",
+			"menu.help.index": "索引(_I)",
+			"menu.help.search": "搜索内容(_S)",
+			"menu.help.about": "关于(_A)...",
+			"message.sample": "这里展示了一段示例文本。",
+			"message.ready": "就绪"
 		},
 		"namespace2": {
 			"translateObj1": "text1"

@@ -25,9 +25,36 @@
                 <MenuItem Header="{lex:Loc Key=MainWindow:menu.edit.paste}" />
             </MenuItem>
             <MenuItem Header="{lex:Loc Key=MainWindow:menu.help}">
+                <MenuItem Header="{lex:Loc Key=MainWindow:menu.help.contents}"></MenuItem>
                 <MenuItem Header="{lex:Loc Key=MainWindow:menu.help.about}"></MenuItem>
             </MenuItem>
         </Menu>
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBar.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="100" />
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </ItemsPanelTemplate>
+            </StatusBar.ItemsPanel>
+            <StatusBarItem>
+                <TextBlock x:Name="StatusIndicator" Text="Ready" />
+            </StatusBarItem>
+            <Separator Grid.Column="1" />
+            <StatusBarItem Grid.Column="2">
+                <TextBlock Text="{lex:Loc Key=MainWindow:message.sample}" />
+            </StatusBarItem>
+            <Separator Grid.Column="3" />
+            <StatusBarItem Grid.Column="4">
+                <ProgressBar Value="50" Width="90" Height="16" />
+            </StatusBarItem>
+        </StatusBar>
         <Grid>
             <Button Content="{lex:Loc Key=MainWindow:button1.text}" HorizontalAlignment="Left" Margin="148,148,0,0" VerticalAlignment="Top" Width="124" Height="23" Click="Button_Click"/>
             <Button Content="{lex:Loc Key=MainWindow:button2.text}" HorizontalAlignment="Left" Margin="148,176,0,0" VerticalAlignment="Top" Width="124" Click="Button2_OnClick"/>

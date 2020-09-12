@@ -1,18 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using WPFLocalizeExtension.Engine;
 
 namespace NetCoreWpfLocDemo
@@ -22,19 +10,39 @@ namespace NetCoreWpfLocDemo
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly Action _onLocLangChanged;
+
         public MainWindow()
         {
             LocalizeDictionary.SetDefaultProvider(this, JsonLocProvider.Instance);
             InitializeComponent();
+            
+            _onLocLangChanged = OnLocLangChanged;
+            App.LocLanguageChanged += _onLocLangChanged;
+
+            Closed += MainWindow_Closed;
+
+            OnLocLangChanged();
         }
+
+        private void MainWindow_Closed(object sender, EventArgs e)
+        {
+            App.LocLanguageChanged -= _onLocLangChanged;
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            LocalizeDictionary.Instance.Culture = CultureInfo.CreateSpecificCulture("zh-CN");
+            App.SelectedLanguage = CultureInfo.GetCultureInfoByIetfLanguageTag("zh-CN");
         }
 
         private void Button2_OnClick(object sender, RoutedEventArgs e)
         {
-            LocalizeDictionary.Instance.Culture = CultureInfo.DefaultThreadCurrentUICulture;
+            App.SelectedLanguage = CultureInfo.DefaultThreadCurrentUICulture;
+        }
+
+        private void OnLocLangChanged()
+        {
+            StatusIndicator.Text = App.LocalizationHost.GetObject("MainWindow:message.ready") as string;
         }
     }
 }

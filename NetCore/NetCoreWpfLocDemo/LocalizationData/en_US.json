@@ -25,7 +25,9 @@
 			"menu.help.contents": "_Contents",
 			"menu.help.index": "_Index",
 			"menu.help.search": "_Search",
-			"menu.help.about": "_About..."
+			"menu.help.about": "_About...",
+			"message.sample":  "There shows a sample text.",
+			"message.ready": "Ready"
 		},
 		"namespace2": {
 			"translateObj1": "text1"
