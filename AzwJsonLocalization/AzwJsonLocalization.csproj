@@ -12,6 +12,8 @@
     <Product>AzureZeng's JSON Localization Library</Product>
     <AssemblyTitle>AzureZeng's JSON Localization Library</AssemblyTitle>
     <Copyright>Copyright© AzureZeng Studio 2014-2020. All rights reserverd.</Copyright>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>SignKey.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <ItemGroup>

@@ -47,7 +47,7 @@ namespace NetCoreWpfLocDemo
             if (o == null)
             {
                 ProviderError?.Invoke(this,
-                    new ProviderErrorEventArgs(target, key, "Specific key cannot be found in localization host."));
+                    new ProviderErrorEventArgs(target, key, "Specific key cannot be found in the localization host."));
                 return null;
             }
 

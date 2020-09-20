@@ -24,6 +24,9 @@
                 <MenuItem Header="{lex:Loc Key=MainWindow:menu.edit.copy}" />
                 <MenuItem Header="{lex:Loc Key=MainWindow:menu.edit.paste}" />
             </MenuItem>
+            <MenuItem Header="{lex:Loc Key=MainWindow:menu.languageSelect}" x:Name="menu_selectLanguage">
+
+            </MenuItem>
             <MenuItem Header="{lex:Loc Key=MainWindow:menu.help}">
                 <MenuItem Header="{lex:Loc Key=MainWindow:menu.help.contents}"></MenuItem>
                 <MenuItem Header="{lex:Loc Key=MainWindow:menu.help.about}"></MenuItem>
@@ -56,9 +59,21 @@
             </StatusBarItem>
         </StatusBar>
         <Grid>
-            <Button Content="{lex:Loc Key=MainWindow:button1.text}" HorizontalAlignment="Left" Margin="148,148,0,0" VerticalAlignment="Top" Width="124" Height="23" Click="Button_Click"/>
-            <Button Content="{lex:Loc Key=MainWindow:button2.text}" HorizontalAlignment="Left" Margin="148,176,0,0" VerticalAlignment="Top" Width="124" Click="Button2_OnClick"/>
-
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="3"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <TreeView >
+                <TreeViewItem Header="Item1">
+                    <TreeViewItem Header="EEE"></TreeViewItem>
+                </TreeViewItem>
+                <TreeViewItem Header="Test">
+                    <TreeViewItem Header="(None)"></TreeViewItem>
+                </TreeViewItem>
+            </TreeView>
+            <GridSplitter Grid.Column="1" Width="3" ShowsPreview="True"></GridSplitter>
+            <TextBox Grid.Column="2" AcceptsReturn="True" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible"></TextBox>
         </Grid>
     </DockPanel>
 </Window>

@@ -26,6 +26,7 @@
 			"menu.help.index": "索引(_I)",
 			"menu.help.search": "搜索内容(_S)",
 			"menu.help.about": "关于(_A)...",
+			"menu.languageSelect": "选择语言(_L)",
 			"message.sample": "这里展示了一段示例文本。",
 			"message.ready": "就绪"
 		},

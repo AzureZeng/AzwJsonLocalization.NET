@@ -21,9 +21,9 @@ namespace NetCoreWpfLocDemo
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.GetCultureInfoByIetfLanguageTag("en-US");
-            LocalizationHost.AddLocalizationData(LocalizationData.ParseFromJson(AppRes.zh_CN));
+            _selectedLanguage = CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.GetCultureInfoByIetfLanguageTag("en-US");
             LocalizationHost.AddLocalizationData(LocalizationData.ParseFromJson(AppRes.en_US));
+            LocalizationHost.AddLocalizationData(LocalizationData.ParseFromJson(AppRes.zh_CN));
         }
 
         public static event Action LocLanguageChanged;

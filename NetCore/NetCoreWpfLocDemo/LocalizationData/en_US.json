@@ -26,6 +26,7 @@
 			"menu.help.index": "_Index",
 			"menu.help.search": "_Search",
 			"menu.help.about": "_About...",
+			"menu.languageSelect": "Select _Language",
 			"message.sample":  "There shows a sample text.",
 			"message.ready": "Ready"
 		},
