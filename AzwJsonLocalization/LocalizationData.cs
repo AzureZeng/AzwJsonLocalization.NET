@@ -12,6 +12,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using Newtonsoft.Json.Linq;
 
@@ -28,12 +29,10 @@ namespace AzureZeng.JsonLocalization
         private string m_author = string.Empty;
 
         private string m_desc = string.Empty;
+        private CultureInfo m_targetLanguage;
 
-        private LocalizationData()
+        private LocalizationData():this(CultureInfo.CurrentCulture)
         {
-            LanguageInfo = CultureInfo.CurrentUICulture;
-            _translateData = new Dictionary<string, Dictionary<string, object>>();
-            CreateNewNamespace("default");
         }
 
         /// <summary>
@@ -41,10 +40,10 @@ namespace AzureZeng.JsonLocalization
         /// </summary>
         /// <param name="targetCultureInfo">The target language of this data instance.</param>
         /// <exception cref="ArgumentNullException"><paramref name="targetCultureInfo" /> is null</exception>
+
         public LocalizationData(CultureInfo targetCultureInfo)
         {
-            if (targetCultureInfo == null) throw new ArgumentNullException(nameof(targetCultureInfo));
-            LanguageInfo = CultureInfo.CurrentUICulture;
+            m_targetLanguage = targetCultureInfo ?? throw new ArgumentNullException(nameof(targetCultureInfo));
             _translateData = new Dictionary<string, Dictionary<string, object>>();
             CreateNewNamespace("default");
         }
@@ -52,7 +51,17 @@ namespace AzureZeng.JsonLocalization
         /// <summary>
         ///     The target language of this data.
         /// </summary>
-        public CultureInfo LanguageInfo { get; private set; }
+        public CultureInfo TargetLanguage
+        {
+            get => m_targetLanguage;
+            set
+            {
+                if (IsTargetLanguageEditable) m_targetLanguage = value;
+                else throw new InvalidOperationException($"The target language of this {nameof(LocalizationData)} cannot be changed after applying to {nameof(LocalizationHost)} instance. ");
+            }
+        }
+
+        public bool IsTargetLanguageEditable { get; internal set; } = true;
 
         /// <summary>
         ///     The author of this localization data. This property is usually defined in data JSON file.
@@ -179,6 +188,7 @@ namespace AzureZeng.JsonLocalization
         ///     Create an <seealso cref="LocalizationData" /> instance and load data from a specified JSON string.
         /// </summary>
         /// <param name="json">The data JSON string.</param>
+        /// <param name="isTargetLanguageEditable">Determines whether the target language of <seealso cref="LocalizationData"/> can be changed after initializing the instance.</param>
         /// <returns>The instance created.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="json" /> is empty string or null.</exception>
         public static LocalizationData ParseFromJson(string json)
@@ -209,7 +219,7 @@ namespace AzureZeng.JsonLocalization
                 if (!string.IsNullOrWhiteSpace(targetCultureName))
                     try
                     {
-                        LanguageInfo = CultureInfo.GetCultureInfoByIetfLanguageTag(targetCultureName);
+                        m_targetLanguage = CultureInfo.GetCultureInfoByIetfLanguageTag(targetCultureName);
                     }
                     catch (CultureNotFoundException)
                     {
@@ -245,8 +255,11 @@ namespace AzureZeng.JsonLocalization
             return true;
         }
 
+        [SuppressMessage("","IDE0056")]
+        [SuppressMessage("","IDE0057")]
         public static bool ParsePathString(string s, out string namespaceName, out string key)
         {
+            // ReSharper disable once UseIndexFromEndExpression
             if (string.IsNullOrWhiteSpace(s) || s[s.Length - 1] == ':') goto InvalidPathReturn;
             if (s.Contains(":"))
             {

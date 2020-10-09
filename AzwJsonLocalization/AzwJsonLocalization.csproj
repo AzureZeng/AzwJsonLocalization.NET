@@ -1,23 +1,28 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFrameworks>netstandard2.1;netstandard2.0;net472;net48</TargetFrameworks>
-    <RootNamespace>AzureZeng.JsonLocalization</RootNamespace>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFrameworks>netstandard2.1;netstandard2.0;net472;net48;net45</TargetFrameworks>
+		<RootNamespace>AzureZeng.JsonLocalization</RootNamespace>
+	</PropertyGroup>
 
-  <PropertyGroup>
-    <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
-    <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
-    <GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
-    <Product>AzureZeng's JSON Localization Library</Product>
-    <AssemblyTitle>AzureZeng's JSON Localization Library</AssemblyTitle>
-    <Copyright>Copyright© AzureZeng Studio 2014-2020. All rights reserverd.</Copyright>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>SignKey.snk</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
+	<PropertyGroup>
+		<GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+		<GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
+		<GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
+		<Product>AzureZeng's JSON Localization Library</Product>
+		<AssemblyTitle>AzureZeng's JSON Localization Library</AssemblyTitle>
+		<Copyright>Copyright© AzureZeng Studio 2014-2020. All rights reserverd.</Copyright>
+		<SignAssembly>true</SignAssembly>
+		<AssemblyOriginatorKeyFile>..\SignKey.snk</AssemblyOriginatorKeyFile>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-  </ItemGroup>
+	<ItemGroup>
+	  <None Include="..\SignKey.snk" Link="SignKey.snk" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+	</ItemGroup>
+
 
 </Project>

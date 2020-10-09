@@ -75,7 +75,7 @@ namespace AzureZeng.JsonLocalization
         {
             if (lang == null) throw new ArgumentNullException(nameof(lang));
             foreach (var l in _dataSet)
-                if (lang.Equals(l.LanguageInfo))
+                if (lang.Equals(l.TargetLanguage))
                     return true;
             return false;
         }
@@ -89,7 +89,7 @@ namespace AzureZeng.JsonLocalization
         {
             if (lang == null) return null;
             foreach (var i in _dataSet)
-                if (lang.Equals(i.LanguageInfo))
+                if (lang.Equals(i.TargetLanguage))
                     return i;
 
             return null;
@@ -173,8 +173,8 @@ namespace AzureZeng.JsonLocalization
             targetData = null;
             foreach (var c in _dataSet)
             {
-                if (c.LanguageInfo.Equals(_defaultCultureInfo)) defaultData = c;
-                if (c.LanguageInfo.Equals(selectedCultureInfo)) targetData = c;
+                if (c.TargetLanguage.Equals(_defaultCultureInfo)) defaultData = c;
+                if (c.TargetLanguage.Equals(selectedCultureInfo)) targetData = c;
             }
         }
 
@@ -194,12 +194,13 @@ namespace AzureZeng.JsonLocalization
         public void AddLocalizationData(LocalizationData data)
         {
             if (data == null) throw new ArgumentNullException(nameof(data));
-            if (ContainsLanguageData(data.LanguageInfo))
+            data.IsTargetLanguageEditable = false;
+            if (ContainsLanguageData(data.TargetLanguage))
                 throw new InvalidOperationException(
                     $"Cannot add a {nameof(LocalizationData)} instance that the target language already loaded in this {nameof(LocalizationHost)}. " +
                     $"If you want to add this {nameof(LocalizationData)} instance, you must remove the {nameof(LocalizationData)} which the target language is same in this host.");
             _dataSet.Add(data);
-            AvailableLanguages.Add(data.LanguageInfo);
+            AvailableLanguages.Add(data.TargetLanguage);
         }
 
         /// <summary>
@@ -216,7 +217,7 @@ namespace AzureZeng.JsonLocalization
                 if (i == data)
                 {
                     _dataSet.Remove(data);
-                    AvailableLanguages.Remove(data.LanguageInfo);
+                    AvailableLanguages.Remove(data.TargetLanguage);
                     return true;
                 }
             }
@@ -235,10 +236,10 @@ namespace AzureZeng.JsonLocalization
             for (var index = 0; index < _dataSet.Count; index++)
             {
                 var i = _dataSet[index];
-                if (i.LanguageInfo.Equals(targetLang))
+                if (i.TargetLanguage.Equals(targetLang))
                 {
                     _dataSet.Remove(i);
-                    AvailableLanguages.Remove(i.LanguageInfo);
+                    AvailableLanguages.Remove(i.TargetLanguage);
                     return true;
                 }
             }

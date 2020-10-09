@@ -127,23 +127,24 @@ namespace AzureZeng.JsonLocalization.DynamicLocalization
                 var pi = b[0] as PropertyInfo;
                 if (pi != null)
                 {
-                    Action performLoc = delegate
+                    void PerformLoc()
                     {
                         var val = BindHost.LocalizationProvider.GetObject(b[1] as string, b[2] as string) ??
                                   $"Key: {(string.IsNullOrEmpty(b[1] as string) ? string.Empty : b[1] + ":")}{b[2]}";
                         pi.SetValue(a.TargetObject, val);
-                    };
+                    }
+
                     if (BindHost.IgnoreUpdateLocException)
                         try
                         {
-                            performLoc.Invoke();
+                            PerformLoc();
                         }
                         catch (Exception e)
                         {
                             Console.WriteLine("Localization Error:" + e);
                         }
                     else
-                        performLoc.Invoke();
+                        PerformLoc();
                 }
             }
 

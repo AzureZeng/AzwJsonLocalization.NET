@@ -1,0 +1,149 @@
+﻿<fRibbon:RibbonWindow x:Class="AzwJsonLocalization.Editor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AzwJsonLocalization.Editor"
+        xmlns:mahapps="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:fRibbon="urn:fluent-ribbon"
+        mc:Ignorable="d"
+        Title="AzwJsonLocalization.NET Editor" Height="450" Width="800" TextOptions.TextRenderingMode="Grayscale"
+        GlowBrush="{DynamicResource MahApps.Brushes.Accent}"
+        NonActiveBorderBrush="{DynamicResource MahApps.Brushes.Border.NonActive}">
+    <DockPanel>
+        <fRibbon:Ribbon DockPanel.Dock="Top" x:Name="RibbonHost">
+            <fRibbon:Ribbon.QuickAccessItems>
+                <fRibbon:QuickAccessMenuItem IsChecked="True" Header="Undo" Target="{Binding ElementName=btn_undo}"></fRibbon:QuickAccessMenuItem>
+                <fRibbon:QuickAccessMenuItem IsChecked="True" Header="Redo" Target="{Binding ElementName=btn_redo}"></fRibbon:QuickAccessMenuItem>
+            </fRibbon:Ribbon.QuickAccessItems>
+            <fRibbon:Ribbon.Menu>
+                <fRibbon:Backstage Header="Start">
+                    <fRibbon:BackstageTabControl>
+                        <fRibbon:BackstageTabItem Header="New">
+                        </fRibbon:BackstageTabItem>
+                        <fRibbon:Button Header="Open" IsDefinitive="False"></fRibbon:Button>
+                        <fRibbon:Button Header="Save" IsDefinitive="False"></fRibbon:Button>
+                        <fRibbon:BackstageTabItem Header="Save As"/>
+                        <fRibbon:SeparatorTabItem/>
+                        <fRibbon:Button Header="Exit">
+                        </fRibbon:Button>
+                    </fRibbon:BackstageTabControl>
+                </fRibbon:Backstage>
+            </fRibbon:Ribbon.Menu>
+            <fRibbon:RibbonTabItem Header="Home">
+                <fRibbon:RibbonGroupBox Header="Clipboard" Margin="3,0,0,0">
+                    <fRibbon:Button Header="Paste" Command="Paste" CommandTarget="{Binding ElementName=TranslateTextBox}">
+                        <fRibbon:Button.LargeIcon>
+                            <Image Source="AppResources/Images/32x32/Paste.png"></Image>
+                        </fRibbon:Button.LargeIcon>
+                        <fRibbon:Button.Icon>
+                            <Image Source="AppResources/Images/16x16/Paste.png"></Image>
+                        </fRibbon:Button.Icon>
+                    </fRibbon:Button>
+                    <fRibbon:Button SizeDefinition="Middle" Header="Cut" Command="Cut" CommandTarget="{Binding ElementName=TranslateTextBox}">
+                        <fRibbon:Button.Icon>
+                            <Image Source="AppResources/Images/16x16/Cut.png"/>
+                        </fRibbon:Button.Icon>
+                    </fRibbon:Button>
+                    <fRibbon:Button SizeDefinition="Middle" Header="Copy" Command="Copy" CommandTarget="{Binding ElementName=TranslateTextBox}">
+                        <fRibbon:Button.Icon>
+                            <Image Source="AppResources/Images/16x16/Copy.png"/>
+                        </fRibbon:Button.Icon>
+                    </fRibbon:Button>
+                </fRibbon:RibbonGroupBox>
+                <fRibbon:RibbonGroupBox Header="Operations">
+                    <fRibbon:Button SizeDefinition="Large" Header="Add New Namespaces">
+                        <fRibbon:Button.Icon>
+                            <Image Source="AppResources/Images/16x16/AddNamespace.png"></Image>
+                        </fRibbon:Button.Icon>
+                        <fRibbon:Button.LargeIcon>
+                            <Image Source="AppResources/Images/32x32/AddNamespace.png"></Image>
+                        </fRibbon:Button.LargeIcon>
+                    </fRibbon:Button>
+                    <fRibbon:Button SizeDefinition="Large" Header="Add New Translate Items">
+                        <fRibbon:Button.Icon>
+                            <Image Source="AppResources/Images/16x16/AddField.png"></Image>
+                        </fRibbon:Button.Icon>
+                        <fRibbon:Button.LargeIcon>
+                            <Image Source="AppResources/Images/32x32/AddField.png"></Image>
+                        </fRibbon:Button.LargeIcon>
+                    </fRibbon:Button>
+                    <fRibbon:Button Header="Undo" SizeDefinition="Middle, Small" x:Name="btn_undo">
+                        <fRibbon:Button.Icon>
+                            <Image Source="AppResources/Images/16x16/Undo.png"></Image>
+                        </fRibbon:Button.Icon>
+                    </fRibbon:Button>
+                    <fRibbon:Button Header="Redo" SizeDefinition="Middle, Small" x:Name="btn_redo">
+                        <fRibbon:Button.Icon>
+                            <Image Source="AppResources/Images/16x16/Redo.png"></Image>
+                        </fRibbon:Button.Icon>
+                    </fRibbon:Button>
+                </fRibbon:RibbonGroupBox>
+                <fRibbon:RibbonGroupBox Header="Sorting">
+                    <fRibbon:Button SizeDefinition="Middle, Small" Header="Sort Item Ascending">
+                        <fRibbon:Button.Icon>
+                            <Image Source="AppResources/Images/16x16/SortAscending.png"></Image>
+                        </fRibbon:Button.Icon>
+                    </fRibbon:Button>
+                    <fRibbon:Button SizeDefinition="Middle, Small" Header="Sort Item Descending">
+                        <fRibbon:Button.Icon>
+                            <Image Source="AppResources/Images/16x16/SortDescending.png"></Image>
+                        </fRibbon:Button.Icon>
+                    </fRibbon:Button>
+                </fRibbon:RibbonGroupBox>
+            </fRibbon:RibbonTabItem>
+        </fRibbon:Ribbon>
+        <fRibbon:StatusBar DockPanel.Dock="Bottom">
+            <fRibbon:StatusBar.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid>
+
+                    </Grid>
+                </ItemsPanelTemplate>
+            </fRibbon:StatusBar.ItemsPanel>
+            <fRibbon:StatusBarItem>
+                <TextBlock Margin="6,0,0,0">Ready</TextBlock>
+            </fRibbon:StatusBarItem>
+        </fRibbon:StatusBar>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" MinWidth="150"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="3*" MinWidth="200"/>
+            </Grid.ColumnDefinitions>
+            <TreeView>
+                <TreeViewItem Header="Namespaces">
+                    <TreeViewItem Header="Default"></TreeViewItem>
+                </TreeViewItem>
+            </TreeView>
+            <GridSplitter Grid.Column="1" Width="3" ResizeBehavior="PreviousAndNext"/>
+            <Grid Grid.Column="2">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <ListView SelectionMode="Extended">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="String Key" Width="120" DisplayMemberBinding="{Binding Path=Key}" />
+                                <GridViewColumn Header="Target String" Width="300" DisplayMemberBinding="{Binding Path=TargetString}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <GridSplitter Grid.Row="1" Height="3" ResizeBehavior="PreviousAndNext"/>
+                    <Grid Grid.Row="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <Label>Translated String:</Label>
+                        <TextBox Grid.Row="1" x:Name="TranslateTextBox" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" ></TextBox>
+                    </Grid>
+
+                </Grid>
+            </Grid>
+        </Grid>
+    </DockPanel>
+</fRibbon:RibbonWindow>

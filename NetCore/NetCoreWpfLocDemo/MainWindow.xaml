@@ -60,11 +60,11 @@
         </StatusBar>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="1*" MinWidth="150"/>
                 <ColumnDefinition Width="3"/>
-                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="4*" MinWidth="150"/>
             </Grid.ColumnDefinitions>
-            <TreeView >
+            <TreeView Grid.Column="0" >
                 <TreeViewItem Header="Item1">
                     <TreeViewItem Header="EEE"></TreeViewItem>
                 </TreeViewItem>
@@ -72,7 +72,7 @@
                     <TreeViewItem Header="(None)"></TreeViewItem>
                 </TreeViewItem>
             </TreeView>
-            <GridSplitter Grid.Column="1" Width="3" ShowsPreview="True"></GridSplitter>
+            <GridSplitter Grid.Column="1" Width="3" ResizeBehavior="PreviousAndNext"></GridSplitter>
             <TextBox Grid.Column="2" AcceptsReturn="True" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible"></TextBox>
         </Grid>
     </DockPanel>

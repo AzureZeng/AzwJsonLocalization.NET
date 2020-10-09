@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFrameworks>netcoreapp3.1;net472;net48</TargetFrameworks>
+		<UseWPF>true</UseWPF>
+		<StartupObject>AzwJsonLocalization.Editor.Program</StartupObject>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Fluent.Ribbon" Version="8.0.0" />
+		<PackageReference Include="MahApps.Metro" Version="2.2.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Resource Include="AppResources\Images\16x16\*" />
+		<Resource Include="AppResources\Images\32x32\*" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="AppResources\Images\16x16\SortAscending.png" />
+	  <None Remove="AppResources\Images\16x16\SortDescending.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\AzwJsonLocalization\AzwJsonLocalization.csproj" />
+	</ItemGroup>
+
+</Project>
